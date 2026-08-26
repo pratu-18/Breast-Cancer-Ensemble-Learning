@@ -1,0 +1,406 @@
+BREAST CANCER ENSEMBLE LEARNING
+MODEL COMPARISON
+========================================
+
+Project: Breast Cancer Classification
+Author: Pratiksha Gorakh Mahale
+
+
+1. PROJECT OVERVIEW
+-------------------
+
+This case study solves the same Breast Cancer classification problem
+using multiple Machine Learning and Ensemble Learning techniques.
+
+Models implemented:
+
+1. Bagging Classifier
+2. Random Forest Classifier
+3. AdaBoost Classifier
+4. Hard Voting Classifier
+5. Soft Voting Classifier
+
+The objective is to compare different ensemble learning approaches
+on the same dataset and understand how different techniques combine
+multiple models to make classification predictions.
+
+
+2. DATASET
+----------
+
+Dataset file:
+
+breast_cancer.csv
+
+Target column:
+
+target
+
+The remaining columns are used as input features.
+
+Train-Test Split:
+
+Training Data : 80%
+Testing Data  : 20%
+Random State  : 42
+
+
+3. MODELS USED
+--------------
+
+
+A. BAGGING CLASSIFIER
+---------------------
+
+Base Estimator:
+
+DecisionTreeClassifier
+
+Configuration:
+
+n_estimators = 10
+random_state = 42
+
+Concept:
+
+Bagging creates multiple versions of the base Decision Tree using
+different bootstrap samples and combines their predictions.
+
+Main purpose:
+
+Reduce variance and improve model stability.
+
+
+B. RANDOM FOREST CLASSIFIER
+----------------------------
+
+Configuration:
+
+n_estimators = 10
+random_state = 42
+
+Concept:
+
+Random Forest creates multiple Decision Trees using bootstrap
+sampling and random feature selection. The predictions of the
+individual trees are combined to produce the final classification.
+
+Main purpose:
+
+Improve generalization and reduce overfitting compared with a
+single Decision Tree.
+
+
+C. ADABOOST CLASSIFIER
+----------------------
+
+Configuration:
+
+n_estimators = 50
+learning_rate = 1.0
+random_state = 42
+
+Default estimator:
+
+DecisionTreeClassifier (scikit-learn default)
+
+Concept:
+
+AdaBoost builds weak learners sequentially. Each subsequent learner
+focuses more on observations that were incorrectly classified by
+previous learners.
+
+Main purpose:
+
+Reduce prediction errors by sequentially improving the ensemble.
+
+
+D. HARD VOTING CLASSIFIER
+-------------------------
+
+Models used:
+
+1. Logistic Regression
+2. Decision Tree Classifier
+3. K-Nearest Neighbors Classifier
+
+Voting:
+
+hard
+
+Concept:
+
+Each individual classifier gives one class prediction. The class
+receiving the majority of votes becomes the final prediction.
+
+Example:
+
+Logistic Regression -> Malignant
+Decision Tree       -> Benign
+KNN                 -> Benign
+
+Final prediction -> Benign
+
+Main purpose:
+
+Combine heterogeneous classification algorithms using majority voting.
+
+
+E. SOFT VOTING CLASSIFIER
+-------------------------
+
+Models used:
+
+1. Logistic Regression
+2. Decision Tree Classifier
+3. K-Nearest Neighbors Classifier
+
+Voting:
+
+soft
+
+Concept:
+
+Each classifier provides class probabilities. The probabilities
+are combined and the class with the highest combined probability
+becomes the final prediction.
+
+Main purpose:
+
+Use probability information from multiple heterogeneous classifiers.
+
+
+4. EVALUATION METRICS
+---------------------
+
+Accuracy:
+
+Accuracy measures the percentage of correctly classified samples.
+
+Formula:
+
+Accuracy = Correct Predictions / Total Predictions
+
+Higher Accuracy = Better performance
+
+
+Confusion Matrix:
+
+The confusion matrix shows the number of:
+
+True Positives
+True Negatives
+False Positives
+False Negatives
+
+It helps understand the types of classification errors made by
+each model.
+
+
+5. MODEL COMPARISON TABLE
+-------------------------
+
+The actual accuracy values should be entered after running all
+five programs.
+
++-------------------------+------------+----------------------+
+| Model                   | Accuracy   | Ensemble Technique  |
++-------------------------+------------+----------------------+
+| Bagging Classifier      |    TBD     | Bagging              |
+| Random Forest           |    TBD     | Random Forest        |
+| AdaBoost Classifier     |    TBD     | Boosting             |
+| Hard Voting             |    TBD     | Voting               |
+| Soft Voting             |    TBD     | Voting               |
++-------------------------+------------+----------------------+
+
+
+6. COMPARISON OF TECHNIQUES
+----------------------------
+
+Bagging:
+
+- Uses multiple models independently.
+- Uses bootstrap samples.
+- Mainly helps reduce variance.
+- Uses homogeneous base estimators in this project.
+
+
+Random Forest:
+
+- Uses multiple Decision Trees.
+- Uses bootstrap sampling.
+- Uses random feature selection.
+- Provides a strong tree-based ensemble.
+
+
+AdaBoost:
+
+- Builds learners sequentially.
+- Focuses on previously misclassified observations.
+- Uses learning rate and number of estimators.
+- Designed to improve weak learners iteratively.
+
+
+Hard Voting:
+
+- Uses heterogeneous models.
+- Combines class predictions.
+- Final class is selected using majority voting.
+
+
+Soft Voting:
+
+- Uses heterogeneous models.
+- Combines class probabilities.
+- Usually provides richer information than hard voting when
+  probability estimates are reliable.
+
+
+7. HOMOGENEOUS VS HETEROGENEOUS ENSEMBLES
+------------------------------------------
+
+Homogeneous Ensemble:
+
+Uses the same type of base model multiple times.
+
+Examples in this project:
+
+- Bagging with Decision Trees
+- Random Forest with Decision Trees
+- AdaBoost with Decision Tree based weak learners
+
+
+Heterogeneous Ensemble:
+
+Uses different types of machine learning models.
+
+Example in this project:
+
+- Hard Voting:
+  Logistic Regression + Decision Tree + KNN
+
+- Soft Voting:
+  Logistic Regression + Decision Tree + KNN
+
+
+8. IMPORTANT COMPARISON
+-----------------------
+
+This project demonstrates that the same Breast Cancer classification
+case study can be solved using different ensemble strategies.
+
+The techniques differ mainly in how multiple models are created
+and how their predictions are combined.
+
+
+Bagging:
+
+Multiple models -> independent training -> combine predictions
+
+
+Boosting:
+
+Multiple models -> sequential training -> focus on errors
+
+
+Random Forest:
+
+Multiple randomized Decision Trees -> combine predictions
+
+
+Hard Voting:
+
+Different models -> class votes -> majority class
+
+
+Soft Voting:
+
+Different models -> probability predictions -> combined probability
+
+
+9. HOW TO SELECT THE BEST MODEL
+--------------------------------
+
+The model should not be selected only because it is an ensemble model.
+
+Compare the actual test-set results of all models.
+
+For this classification case study:
+
+Higher Accuracy:
+
+Generally better classification performance.
+
+
+Confusion Matrix:
+
+Should also be inspected to understand false positives
+and false negatives.
+
+For a real medical application, accuracy alone should not be
+considered sufficient. Additional metrics such as Precision,
+Recall, F1-score and ROC-AUC should also be evaluated.
+
+
+10. FINAL RESULT
+----------------
+
+After executing all five programs, enter the actual accuracy
+values in the Model Comparison Table.
+
+Example format:
+
+Bagging Classifier   : XX.XX%
+Random Forest        : XX.XX%
+AdaBoost Classifier  : XX.XX%
+Hard Voting          : XX.XX%
+Soft Voting          : XX.XX%
+
+
+Best Model based on Accuracy:
+
+    __________________________
+
+
+Best Model based on overall evaluation:
+
+    __________________________
+
+
+11. LEARNING OUTCOMES
+---------------------
+
+Through this case study, the following concepts are demonstrated:
+
+- Classification
+- Decision Tree Classification
+- Bagging
+- Random Forest
+- Boosting
+- AdaBoost
+- Hard Voting
+- Soft Voting
+- Homogeneous Ensemble
+- Heterogeneous Ensemble
+- Majority Voting
+- Probability-based Voting
+- Train-Test Split
+- Feature Scaling
+- Accuracy
+- Confusion Matrix
+- Model Comparison
+
+
+12. CONCLUSION
+--------------
+
+The Breast Cancer case study demonstrates how one classification
+problem can be approached using multiple Machine Learning and
+Ensemble Learning techniques.
+
+Bagging, Random Forest and AdaBoost use multiple learners in
+different ways, while Hard Voting and Soft Voting demonstrate how
+different types of classifiers can be combined.
+
+The final model should be selected based on actual evaluation
+results and the requirements of the classification problem.
